@@ -39,12 +39,6 @@ def downloadTweets(username, tweet_count, api, output):
     except:
         os.chdir(output)
 
-    try:
-        os.mkdir(username)
-        os.chdir(username)
-    except:
-        os.chdir(username)
-
     saved = 0
     length = len(tweets)
     media_tweets = set()
@@ -65,7 +59,7 @@ def downloadTweets(username, tweet_count, api, output):
                                     media_tweets.add(image_media['media_url'])
 
     for links in media_tweets:
-        wget.download(links, out="output")
+        wget.download(links, out=output)
                                     
 
 #ffmpeg compiles all of the images into a video file
@@ -76,9 +70,17 @@ def makeVideo():
 def doAnalysis(output):
     vision_client = google.cloud.vision.ImageAnnotatorClient()
 
+    print('Labels: ')
+
     for files in output:
-        print(files)
-        
+        image_file_name = files
+        with io.open(image_file_name, 'rb') as image_file:
+            content = image_file.read()
+        image = google.cloud.vision.types.Image(content=content)
+        response = vision_client_label_detection(image=image)
+
+        for label in response.label_annotations:
+            print(label.description)
 
     
 def main():
