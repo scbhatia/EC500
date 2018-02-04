@@ -31,12 +31,15 @@ def downloadTweets(username, tweet_count, api, output_folder):
         print(e)
         sys.exit()
 
+    # Creates new folder for output
     try:
         os.mkdir(output)
         os.chdir(output)
     except:
         os.chdir(output)
 
+    # Download and saved algorithm
+    # Goes through tweets until tweet_count number of images are downloaded 
     saved = 0
     length = len(tweets)
     media_tweets = set()
