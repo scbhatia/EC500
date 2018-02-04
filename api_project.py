@@ -67,20 +67,20 @@ def makeVideo():
 
 
 #Google Cloud vision does analysis on each image in the specified folder 
-def doAnalysis(output):
+def doAnalysis(vision_client, output):
     vision_client = google.cloud.vision.ImageAnnotatorClient()
 
+    with io.open(output, 'rb') as image_file:
+        content = image_file.read()
+
+    image = google.cloud.vision.types.Image(content=content)
+
+    response = vision_client.label_detection(image=image)
+
     print('Labels: ')
-
-    for files in output:
-        image_file_name = files
-        with io.open(image_file_name, 'rb') as image_file:
-            content = image_file.read()
-        image = google.cloud.vision.types.Image(content=content)
-        response = vision_client_label_detection(image=image)
-
-        for label in response.label_annotations:
-            print(label.description)
+        
+    for label in response.label_annotations:
+        print(label.description)
 
     
 def main():
