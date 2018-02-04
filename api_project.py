@@ -66,21 +66,6 @@ def downloadTweets(username, tweet_count, api, output):
 def makeVideo():
 
 
-#Google Cloud vision does analysis on each image in the specified folder 
-def doAnalysis(vision_client, output):
-    vision_client = google.cloud.vision.ImageAnnotatorClient()
-
-    with io.open(output, 'rb') as image_file:
-        content = image_file.read()
-
-    image = google.cloud.vision.types.Image(content=content)
-
-    response = vision_client.label_detection(image=image)
-
-    print('Labels: ')
-        
-    for label in response.label_annotations:
-        print(label.description)
 
     
 def main():
