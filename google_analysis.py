@@ -5,11 +5,15 @@
 
 import os
 import io
+import json
 
 import google.cloud.vision
 
-def __init__(vision_client, output):
-    vision_client = google.cloud.vision.ImageAnnotatorClient()
+os.environ[GOOGLE_APPLICATION_CREDENTIALS]="/Users/shivanibhatia/EC500-json"
+
+#Instantiates a client 
+vision_client = google.cloud.vision.ImageAnnotatorClient()
+
 
 def doAnalysis(vision_client, output):
 
