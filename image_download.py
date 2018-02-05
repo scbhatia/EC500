@@ -21,10 +21,15 @@ def authorization(cparse):
     api = API(auth)
     return api
 
-def getTweets(username, api):
+def downloadTweets(username, api, max_img, output):
+
+    media_tweets = set()
+    downloaded =  0
+    back_count = max_img
+
+    
     try:
         tweets = api.user_timeline(screen_name=username,
-                                   count = 3200,
                                    include_rts=False,
                                    exclude_replies=True)
 
@@ -32,11 +37,21 @@ def getTweets(username, api):
         print(e)
         sys.exit()
 
-    last_id = int(tweets[-1].id - 1)
+    for posts in tweets:
+        media = posts.entities.get('media', [])
+        if (len(media) > 0):
+            if (media[0]['type'] == 'photo'):
+                media_tweets.add(media[0]['media_url'])
+                downloaded = downloaded + 1
+                if (downloaded == max_img):
+                    break
 
-    downloaded =  0
+    if not os.path.exists(output):
+        os.makedirs(output)
+        
+    last_id = int(tweets[-1].id - 1)
     
-    while True:
+    while (downloaded < max_img):
         temp_tweets = api.user_timeline(screen_name=username,
                                         max_id=last_id,
                                         include_rts = False,
@@ -45,45 +60,37 @@ def getTweets(username, api):
         if len(temp_tweets) == 0:
             break
         else:
+            for posts in temp_tweets:
+                media = posts.entities.get('media', [])
+                if (len(media) > 0):
+                    if (media[0]['type'] == 'photo'):
+                        media_tweets.add(media[0]['media_url'])
+                        downloaded = downloaded + 1
+                        if (downloaded == max_img):
+                            break
+
             last_id = int(temp_tweets[-1].id - 1)
-            tweets = tweets + temp_tweets
-
-    return tweets
-
-def downloadTweets(tweets, max_img, output):
-
-    saved = 0
-    media_tweets = set()
-
-    if not os.path.exists(output):
-        os.makedirs(output)
-        
-    for posts in tweets:
-        media = posts.entities.get('media', [])
-        if (len(media) > 0):
-            if (media[0]['type'] == 'photo'):
-                media_tweets.add(media[0]['media_url'])
 
     for files in media_tweets:
-        if (saved < max_img):
-            wget.download(files, out=output)
-            saved = saved + 1
+        if (back_count != 0):
+            wget.download(files,out=output)
+            back_count = back_count - 1
+
             
 def main():
     cparse = config_parse("config.cfg")
     api = authorization(cparse) 
 
     try:
-        username = input("\nPlease enter a twitter handle: ")
-        output = input("\nWhat is the name of the folder you would like the files to be stored in? ")
-        tweet_count = int(input("\nHow many images would you like in your video?"))
+        username = input("Please enter a twitter handle: ")
+        output = input("What is the name of the folder you would like the files to be stored in? ")
+        tweet_count = int(input("How many images would you like in your video? "))
 
     except:
         print("Error. Invalid input. Please try again.")
         sys.exit(1)
-        
-    posts = downloadTweets('asdfgytfghnjikjht', 200, api, 'ImageComics')
-    #analysis = doAnalysis(output)    
+
+    downloadTweets(username, api, tweet_count, output)       
 
 
 if __name__ == '__main__':
