@@ -7,8 +7,6 @@ import configparser
 import wget
 import sys
 import os
-import json
-import tweepy
 
 from tweepy import API, OAuthHandler, Stream
 
@@ -23,9 +21,7 @@ def authorization(cparse):
     api = API(auth)
     return api
 
-def downloadTweets(username, tweet_count, api, output):
-
-    #Gets tweets from specified user handle
+def getTweets(username, api):
     try:
         tweets = api.user_timeline(screen_name=username,
                                    count = 3200,
@@ -36,25 +32,43 @@ def downloadTweets(username, tweet_count, api, output):
         print(e)
         sys.exit()
 
-    # Creates new folder for output
-    if not os.path.exists(output):
-        os.makedirs(output)
+    last_id = int(tweets[-1].id - 1)
+
+    downloaded =  0
+    
+    while True:
+        temp_tweets = api.user_timeline(screen_name=username,
+                                        max_id=last_id,
+                                        include_rts = False,
+                                        exclude_replies = True)
+
+        if len(temp_tweets) == 0:
+            break
+        else:
+            last_id = int(temp_tweets[-1].id - 1)
+            tweets = tweets + temp_tweets
+
+    return tweets
+
+def downloadTweets(tweets, max_img, output):
 
     saved = 0
     media_tweets = set()
 
-    for post in tweets:
-        media = post.entities.get('media', [])
+    if not os.path.exists(output):
+        os.makedirs(output)
+        
+    for posts in tweets:
+        media = posts.entities.get('media', [])
         if (len(media) > 0):
             if (media[0]['type'] == 'photo'):
                 media_tweets.add(media[0]['media_url'])
 
     for files in media_tweets:
-        if (saved < tweet_count):
+        if (saved < max_img):
             wget.download(files, out=output)
             saved = saved + 1
-
-        
+            
 def main():
     cparse = config_parse("config.cfg")
     api = authorization(cparse) 
