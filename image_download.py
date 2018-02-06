@@ -79,28 +79,3 @@ def downloadTweets(username, api, max_img, output):
 def renameImages(output):
     for i, filename in enumerate(os.listdir(output)):
         os.rename(output + "/" + filename, output + "/image" + str(i+1) + ".jpg")
-    
-def main():
-    cparse = config_parse("config.cfg")
-    api = authorization(cparse) 
-
-    try:
-        username = input("Please enter a twitter handle: ")
-        output = input("What is the name of the folder you would like the files to be stored in? ")
-        tweet_count = int(input("How many images would you like in your video? "))
-
-    except:
-        print("Error. Invalid input. Please try again.")
-        sys.exit(1)
-
-    downloadTweets(username, api, tweet_count, output)
-    renameImages(output)
-
-
-if __name__ == '__main__':
-    main()
-            
-
-
-    
-    
