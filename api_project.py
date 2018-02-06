@@ -77,8 +77,8 @@ def main():
     os.environ['https_proxy'] = proxy
     
     username = input("\nPlease enter a twitter handle: ")
-    output = input("\What is the name of the folder you would like the files to be stored in? ")
-    tweet_count = input("\How many images would you like in your video?")
+    output = input("\nWhat is the name of the folder you would like the files to be stored in? ")
+    tweet_count = input("\nHow many images would you like in your video?")
 
     posts = downloadTweets(username, tweet_count, api, output)
     analysis = doAnalysis(output)
