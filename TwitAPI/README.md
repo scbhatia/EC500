@@ -5,7 +5,7 @@
 
 ### Installing Requirements
 
-## Configuring Files 
+### Configuring Files 
 
 ## Author
 Shivani Bhatia 
