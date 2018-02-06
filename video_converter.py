@@ -7,5 +7,4 @@ import os
 import cv2
 
 def makeVideo():
-    settings = {
-        '-framerate': 
+    
