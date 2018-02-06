@@ -76,7 +76,10 @@ def downloadTweets(username, api, max_img, output):
             wget.download(files,out=output)
             back_count = back_count - 1
 
-            
+def renameImages(output):
+    for i, filename in enumerate(os.listdir(output)):
+        os.rename(output + "/" + filename, output + "/image" + str(i+1) + ".jpg")
+    
 def main():
     cparse = config_parse("config.cfg")
     api = authorization(cparse) 
@@ -90,7 +93,8 @@ def main():
         print("Error. Invalid input. Please try again.")
         sys.exit(1)
 
-    downloadTweets(username, api, tweet_count, output)       
+    downloadTweets(username, api, tweet_count, output)
+    renameImages(output)
 
 
 if __name__ == '__main__':
