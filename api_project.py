@@ -7,11 +7,12 @@ import image_download as twit
 import video_converter as fmpg
 import google_analysis as gimg
 
-
+#import google.cloud.vision
     
 def main():
     cparse = twit.config_parse("config.cfg")
-    api = twit.authorization(cparse) 
+    api = twit.authorization(cparse)
+    vision_client = gimg.google.cloud.vision.ImageAnnotatorClient()
 
     try:
         username = input("Please enter a twitter handle: ")
@@ -20,11 +21,14 @@ def main():
 
     except:
         print("Error. Invalid input. Please try again.")
-        sys.exit(1)
+        sys.exit(0)
 
     twit.downloadTweets(username, api, tweet_count, output)
     twit.renameImages(output)
+    gimg.doAnalysis(vision_client, output)
+    fmpg.makeVideo(output)
     
-
+    
+    
 if __name__ == '__main__':
     main()
