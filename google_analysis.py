@@ -11,6 +11,7 @@ import google.cloud.vision
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/shivanibhatia/EC500-google.json"
 
+
 def doAnalysis(vision_client, output):
 
     file = open("image_analysis.txt", "a")
@@ -34,11 +35,4 @@ def doAnalysis(vision_client, output):
                 file.write('\n')
 
         file.write('\n')
-        
-def main():
-    vision_client = google.cloud.vision.ImageAnnotatorClient()
-    doAnalysis(vision_client, 'ImgVal')
-
-if __name__ == '__main__':
-    main()
 
