@@ -9,22 +9,36 @@ import json
 
 import google.cloud.vision
 
-os.environ[GOOGLE_APPLICATION_CREDENTIALS]="/Users/shivanibhatia/EC500-json"
-
-#Instantiates a client 
-vision_client = google.cloud.vision.ImageAnnotatorClient()
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/shivanibhatia/EC500-google.json"
 
 def doAnalysis(vision_client, output):
 
-    with io.open(output, 'rb') as image_file:
-        content = image_file.read()
+    file = open("image_analysis.txt", "a")
+    
+    os.chdir(output)
+    for filename in os.listdir('.'):
+        #print(filename)
+        with io.open(filename, 'rb') as image_file:
+            content = image_file.read()
 
-    image = google.cloud.vision.types.Image(content=content)
+        image = google.cloud.vision.types.Image(content=content)
 
-    response = vision_client.label_detection(image=image)
+        response = vision_client.label_detection(image=image)
 
-    print('Labels: ')
+        file.write(filename + ' Labels: ')
+        file.write('\n')
         
-    for label in response.label_annotations:
-        print(label.description)
+        for label in response.label_annotations:
+            if (label.score > 0.9):
+                file.write(label.description + " " + str(round(label.score * 100,2)))
+                file.write('\n')
+
+        file.write('\n')
+        
+def main():
+    vision_client = google.cloud.vision.ImageAnnotatorClient()
+    doAnalysis(vision_client, 'ImgVal')
+
+if __name__ == '__main__':
+    main()
+
