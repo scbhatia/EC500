@@ -11,7 +11,7 @@ Git clone or download this repository to download all of the files to your local
 5. ffmpeg (Installed on Machine)
 ### Installing Prerequisites
 Installing Python
-- Follow instructions on: [Python Download] (https://www.python.org/downloads/)
+- Follow instructions on: [Python Download](https://www.python.org/downloads/)
 
 Installing tweepy
 ```
