@@ -33,7 +33,18 @@ brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r -
 ### API Authentication
 
 ### Configuring Files 
-
+config.cfg
+```
+[API]
+consumerKey = 'your key goes here'
+consumerSecret = 'your key goes here'
+accessToken = 'your key goes here'
+accessTokenSecret = 'your key goes here'
+```
+google_analysis.py
+```
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] "\path\to\google\json\file\googleapi.json"
+```
 
 ## Usage
 
