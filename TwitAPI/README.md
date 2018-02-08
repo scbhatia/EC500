@@ -11,20 +11,26 @@ Git clone or download this repository to download all of the files to your local
 5. ffmpeg (Installed on Machine)
 ### Installing Prerequisites
 Installing Python
+- Follow instructions on: [Python Download] (https://www.python.org/downloads/)
 
 Installing tweepy
-
 ```
 pip install tweepy
 ```
+
 Installing Google Cloud Vision
+```
+pip install --upgrade google-cloud-vision
+```
 
 Installing Homebrew 
+- Follow instructions on: [Homebrew Download](https://docs.brew.sh/Installation.html)
 
 Installing ffmpeg
 ```
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 ```
+### API Authentication
 
 ### Configuring Files 
 
