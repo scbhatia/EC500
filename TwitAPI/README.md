@@ -43,7 +43,7 @@ accessTokenSecret = 'your key goes here'
 ```
 google_analysis.py
 ```
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] "\path\to\google\json\file\googleapi.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] "\path\to\google\json\file\api.json"
 ```
 
 ## Usage
