@@ -4,6 +4,7 @@
 # video_converter.py
 
 import subprocess
+import os
 
 def makeVideo(output):
-    subprocess.call(["ffmpeg", "-framerate", "1/3","-i", output + "/image%d.jpg", "-c:v", 'libx264', "-r", "10", "-s", "vga", "-pix_fmt", "yuv420p", "video.mp4"])
+    subprocess.call("ffmpeg -pattern_type glob -framerate 1/2 -i '*.jpg' -vf 'scale=w=1280:h=720:force_original_aspect_ratio=1,pad=1280:720:(ow-iw)/2:(oh-ih)/2' -vcodec libx264 out.mp4", shell=True)
