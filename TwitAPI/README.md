@@ -31,6 +31,14 @@ Installing ffmpeg
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 ```
 ### API Authentication
+Twitter
+- Create a twitter account if you don't already have one. Then go to "My Applications".
+  - Follow link to: [Twitter Development](https://developer.twitter.com/)
+- Create a new application and fill in your application details
+- Create your access token and change access to 'Read and Write'
+- Copy the keys into the 'config.cfg' file
+
+Google Cloud Vision API
 
 ### Configuring Files 
 config.cfg
