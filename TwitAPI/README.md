@@ -39,7 +39,9 @@ Twitter
 - Copy the keys into the 'config.cfg' file
 
 Google Cloud Vision API
-
+- Create a Google Cloud Services account if you don't already have one. 
+  - Follow link to create account: 
+- Download the json key file and rename it 
 ### Configuring Files 
 config.cfg
 ```
@@ -55,6 +57,18 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] "\path\to\google\json\file\api.json
 ```
 
 ## Usage
+The user interacts with all 3 wrapper files: google_analysis.py, image_download.py, and video_converter.py
+
+### Example:
+- See api_project.py in this repo
+
+### To run: 
+Import google_analysis, image_download, and video_converter to the file you want to use it in
+```
+import google_analysis
+import image_download
+import video_converter
+```
 
 ## Author
 Shivani Bhatia 
