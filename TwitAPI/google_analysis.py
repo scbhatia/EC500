@@ -14,7 +14,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="\path\to\google\json\file\api.json
 
 def doAnalysis(vision_client, output):
 
-    file = open("image_analysis.txt", "a")
+    file = open("image_analysis.txt", "w")
     
     os.chdir(output)
     for filename in os.listdir('.'):
