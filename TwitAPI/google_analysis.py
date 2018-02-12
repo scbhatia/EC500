@@ -9,7 +9,7 @@ import json
 
 import google.cloud.vision
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/shivanibhatia/EC500-google.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="\path\to\google\json\file\api.json"
 
 
 def doAnalysis(vision_client, output):
