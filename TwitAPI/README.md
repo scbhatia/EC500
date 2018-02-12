@@ -40,7 +40,7 @@ Twitter
 
 Google Cloud Vision API
 - Create a Google Cloud Services account if you don't already have one. 
-  - Follow link to create account: 
+  - Follow link to create account: [Google Cloud Vision](https://cloud.google.com/vision/)
 - Download the json key file and rename it 
 ### Configuring Files 
 config.cfg
