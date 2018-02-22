@@ -19,4 +19,7 @@ The code review has been finished. All review comments regarding the API are und
 Program performance is synchronus. All descriptions are written to terminal and file after the images are downloaded and the video has been made. 
 
 ## Website
+The website was built using Flask for Python and can be run using the command:
+```python web.py```
 
+After running the command above, open your browser and enter '0.0.0.0:8080/' in the address bar. Doing this will load the home screen, as defined in index.html. There, you will be prompted to enter a twitter handle, the destnation folder, and the number of images you would like in the video. Clicking the submit button runs the program with @gvikram31's API. After the processing is completed, you will be directed to '0.0.0.0:8080/submission', whose HTML is defined in output.html. This page will display the video and the descriptions of the images below the video. One thing to note is that the implementation of this website runs slowly when the user is close to exceeding the rate limit, as well as when more images are added. 

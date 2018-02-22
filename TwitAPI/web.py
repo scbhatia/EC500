@@ -1,5 +1,7 @@
 from flask import Flask, redirect, render_template, request, url_for
-import run as apiExercise
+import google_analysis
+import image_download
+import video_converter
 
 website = Flask(__name__)
 
@@ -9,30 +11,26 @@ def form():
 
 @website.route('/', methods=['POST'])
 def form_post():
-    auth = apiExercise.authorise_twitter_api()
-    api = apiExercise.tweepy.API(auth)#, wait_on_rate_limit=True)
+    api = image_download.authorization()
         
     try:
         user = request.form['username']
         folder = request.form['output']
         num = int(request.form['num'])
 
-        isValid = apiExercise.download_images(api, user, num, folder, 1)
+        isValid = image_download.download_images(user, api, num, folder)
         print(user, num, folder)
         
     except Exception as e:
         print(str(e))
-        return render_template('index.html')
-
-    else:
-        if (isValid):
-            apiExercise.doAnalysis(folder)
+        
     return redirect(url_for('cat'))
 
 @website.route('/submission')
 def cat():
-    with open("labels.json") as outfile:
-        lines = json.loads(outfile.read())
+#    apiExercise.doAnalysis(folder)
+#    with open("labels.json") as outfile:
+#        lines = json.loads(outfile.read())
 
     return render_template("output.html")
 
