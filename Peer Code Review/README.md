@@ -1,4 +1,5 @@
 # Testing @gvikram31's API
+A copy of this repository can be found at [GVikram31's Reposity](https://github.com/gvikram31/EC500/blob/miniproj2/)
 
 ## test.py
 This file contains 3 tests to test the API. In order to use, comment all but one out. The tests are as follows:
