@@ -24,7 +24,7 @@ def main():
         print("Error. Invalid input. Please try again.")
         sys.exit(0)
 
-    twit.downloadTweets(username, api, 20, output)
+    twit.downloadTweets(username, api, 10, output)
     twit.renameImages(output)
     gimg.doAnalysis(vision_client, output)
     fmpg.makeVideo(output)
