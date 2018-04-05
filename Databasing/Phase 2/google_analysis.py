@@ -13,8 +13,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/shivanibhatia/EC500-google.
 
 
 def doAnalysis(vision_client, output):
-
-    file = open("image_analysis.txt", "w")
+    descp = []
     
     os.chdir(output)
     for filename in os.listdir('.'):
@@ -25,14 +24,14 @@ def doAnalysis(vision_client, output):
         image = google.cloud.vision.types.Image(content=content)
 
         response = vision_client.label_detection(image=image)
-
-        file.write(filename + ' Labels: ')
-        file.write('\n')
         
         for label in response.label_annotations:
+            features = {}
             if (label.score > 0.9):
-                file.write(label.description + " " + str(round(label.score * 100,2)))
-                file.write('\n')
+                features['description'] = label.description
+                features['score'] = str(round(label.score * 100,2)))
+                descp.append(features)
 
-        file.write('\n')
+        with open('descriptions.json', 'w') as outfile:
+            json.dump(descp, outfile, indent=4, sort_keys=True)
 
