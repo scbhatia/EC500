@@ -1,4 +1,4 @@
-# Twitter Image Analysis and Video
+# Twitter Image Analysis and Video with Database
 
 ## Getting Started
 Git clone or download this repository to download all of the files to your local computer. 
@@ -9,6 +9,9 @@ Git clone or download this repository to download all of the files to your local
 3. Google Cloud Vision (API)
 4. Homebrew
 5. ffmpeg (Installed on Machine)
+6. PyMongo 
+7. MongoDB (Installed on machine)
+
 ### Installing Prerequisites
 Installing Python
 - Follow instructions on: [Python Download](https://www.python.org/downloads/)
@@ -30,6 +33,17 @@ Installing ffmpeg
 ```
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 ```
+
+Installing PyMongo
+```
+pip install pymongo
+```
+
+Installing MongoDB
+```
+brew install mongodb
+```
+
 ### API Authentication
 Twitter
 - Create a twitter account if you don't already have one. Then go to "My Applications".
@@ -42,6 +56,7 @@ Google Cloud Vision API
 - Create a Google Cloud Services account if you don't already have one. 
   - Follow link to create account: [Google Cloud Vision](https://cloud.google.com/vision/)
 - Download the json key file and rename it 
+
 ### Configuring Files 
 config.cfg
 ```
@@ -57,7 +72,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] "\path\to\google\json\file\api.json
 ```
 
 ## Usage
-The user interacts with all 3 wrapper files: google_analysis.py, image_download.py, and video_converter.py
+The user interacts with all 4 wrapper files: google_analysis.py, image_download.py, video_converter.py, and mongo_database
 
 ### Example:
 - See api_project.py in this repo
