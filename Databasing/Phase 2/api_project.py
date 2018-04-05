@@ -1,11 +1,12 @@
 # Shivani Bhatia
 # EC500 C1 Building Software
-# API Project - Main File
-# api_project.py
+# Databasing Project - Main File
+# phase2.py
 
 import image_download as twit 
 import video_converter as fmpg
 import google_analysis as gimg
+import mongo_database as mdb
 
 #import google.cloud.vision
     
@@ -17,17 +18,21 @@ def main():
     try:
         username = input("Please enter a twitter handle: ")
         output = input("What is the name of the folder you would like the files to be stored in? ")
-        tweet_count = int(input("How many images would you like in your video? "))
+        #tweet_count = int(input("How many images would you like in your video? "))
 
     except:
         print("Error. Invalid input. Please try again.")
         sys.exit(0)
 
-    twit.downloadTweets(username, api, tweet_count, output)
+    twit.downloadTweets(username, api, 20, output)
     twit.renameImages(output)
     gimg.doAnalysis(vision_client, output)
     fmpg.makeVideo(output)
     
+    with open("descriptions.json", "r") as f:
+        data = json_util.loads(f.read())
+        
+    mdb.Update(username, data)
     
     
 if __name__ == '__main__':
