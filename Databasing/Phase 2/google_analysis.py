@@ -29,7 +29,7 @@ def doAnalysis(vision_client, output):
             features = {}
             if (label.score > 0.9):
                 features['description'] = label.description
-                features['score'] = str(round(label.score * 100,2)))
+                features['score'] = str(round(label.score * 100,2))
                 descp.append(features)
 
         with open('descriptions.json', 'w') as outfile:

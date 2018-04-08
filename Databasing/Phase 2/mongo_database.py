@@ -12,6 +12,7 @@ def Update(username, data):
     client = MongoClient()
 
     db = client.Descriptions
+    
     entry = {"handle": username,
              "descriptions": data
              }

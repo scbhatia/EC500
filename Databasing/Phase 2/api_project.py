@@ -9,7 +9,8 @@ import google_analysis as gimg
 import mongo_database as mdb
 
 #import google.cloud.vision
-    
+from bson.json_util import loads
+
 def main():
     cparse = twit.config_parse("config.cfg")
     api = twit.authorization(cparse)
@@ -22,7 +23,6 @@ def main():
 
     except:
         print("Error. Invalid input. Please try again.")
-        sys.exit(0)
 
     twit.downloadTweets(username, api, 10, output)
     twit.renameImages(output)
@@ -30,7 +30,7 @@ def main():
     fmpg.makeVideo(output)
     
     with open("descriptions.json", "r") as f:
-        data = json_util.loads(f.read())
+        data = loads(f.read())
         
     mdb.Update(username, data)
     
