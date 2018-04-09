@@ -1,7 +1,8 @@
-# Twitter Image Analysis and Video with Database
+# Twitter Image Analysis and Video with Database (Phase 3)
+This application runs a for loop 20 times and imports data into a MongoDB database. Using this information, you can use analytics to determine information about specific twitter handles or trends, including trending image descriptions, hashtags, etc. 
 
 ## Getting Started
-Git clone or download this repository to download all of the files to your local computer. 
+Git clone or download this repository to download all of the files to your local computer.
 
 ### Prerequisites 
 1. Python 2.7.xx
