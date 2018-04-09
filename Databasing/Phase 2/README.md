@@ -1,4 +1,4 @@
-# Twitter Image Analysis and Video with Database
+# Twitter Image Analysis and Video with Database (Phase 2) 
 
 ## Getting Started
 Git clone or download this repository to download all of the files to your local computer. 
