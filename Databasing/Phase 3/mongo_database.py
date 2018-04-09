@@ -5,6 +5,7 @@
 
 import json
 import os
+import datetime
 from pymongo import MongoClient
 
 #Connect to Mongodb
@@ -12,10 +13,12 @@ def Update(username, data):
     client = MongoClient()
 
     db = client.Descriptions
+    date = datetime.datetime.now()
+    newdate = str(now)
     
     entry = {"handle": username,
              "descriptions": data,
-             "Date": "2018-04-05"
+             "Date": newdate
              }
     
     db.Descriptions.insert(entry)
