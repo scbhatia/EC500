@@ -85,6 +85,17 @@ import image_download
 import video_converter
 import mongo_database
 ```
+Run mongod in your terminal
+```
+mongod
+```
+
+### To view the contents of the database:
+```
+mongo
+db.Descriptions.find()
+```
+
 
 ## Author
 Shivani Bhatia 
